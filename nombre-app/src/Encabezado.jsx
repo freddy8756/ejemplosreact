@@ -1,7 +1,12 @@
 import miimagen from "./assets/images.jpg";
+import iconoFacebook from './assets/descarga.jpg';
+import iconowatsap from './assets/descarga (1).jpg';
+import iconoyoutube from './assets/descarga.png';
+import iconoinstagram from './assets/descarga (2).jpg';
+import './Encabezado.css';
 function Encabezado(){
     return (
-    <div>
+    <div className="encabezadoDiv" >
        <Logotipo />
        <Menu />
        <Redes />
@@ -12,14 +17,14 @@ function Encabezado(){
 
 function Logotipo() {
   return( 
-    <div>
+    <div className="logotipoDiv">
         <img src={miimagen} alt="ytjj"></img>
     </div>
   )
 }
 function Menu(){
     return(
-        <div>
+        <div className="menuDiv">
             <ul>
                 <li>inicio</li>
                 <li>acerca de</li>
@@ -32,10 +37,12 @@ function Menu(){
 }
 function Redes(){
     return(
-        <div>
+        <div className="redesDiv">
             <ul>
-                <li>facebook</li>
-                <li>watsap</li>
+                <li><img src={iconoFacebook} alt='Facebook' ></img>k</li>
+                <li><img src={iconowatsap} alt='watsap'></img></li>
+                <li><img src={iconoyoutube} alt='youtube' ></img>k</li>
+                <li><img src={iconoinstagram} alt='instagram'></img></li>
                 <li>instagram</li>
                 <li>youtube</li>
             </ul>

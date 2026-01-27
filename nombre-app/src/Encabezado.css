@@ -1,0 +1,42 @@
+.encabezadoDiv{
+    background-color:bisque;
+    width: 100%;
+}
+.logodiv{
+    display: inline-block;
+    margin-left: 20px;
+}
+.logodiv img{
+    width: 150px;
+    height: auto;
+}
+.menudiv{
+    display: inline-block;
+    margin-left: 100px;
+    vertical-align: top;
+}
+.menudiv ul{
+    list-style-type: none;
+    padding: 0%;
+    background-color: salmon;
+}
+.menudiv ul li{
+    display: inline;
+    margin-right: 20px;
+    font-weight: bold;
+    color: aqua;
+    cursor: pointer;
+}
+.redesdiv{
+ display: inline-block;
+ float: right;
+ margin-right: 20px;
+}
+.redesdiv ul{
+    list-style-type:none ;
+    padding: 0%;
+}
+.redesdiv ul li{
+    display: inline;
+
+}
