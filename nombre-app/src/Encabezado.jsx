@@ -17,14 +17,14 @@ function Encabezado(){
 
 function Logotipo() {
   return( 
-    <div className="logotipoDiv">
+    <div className="logodiv">
         <img src={miimagen} alt="ytjj"></img>
     </div>
   )
 }
 function Menu(){
     return(
-        <div className="menuDiv">
+        <div className="menudiv">
             <ul>
                 <li>inicio</li>
                 <li>acerca de</li>
@@ -37,14 +37,12 @@ function Menu(){
 }
 function Redes(){
     return(
-        <div className="redesDiv">
+        <div className="redesdiv">
             <ul>
-                <li><img src={iconoFacebook} alt='Facebook' ></img>k</li>
+                <li><img src={iconoFacebook} alt='Facebook' ></img></li>
                 <li><img src={iconowatsap} alt='watsap'></img></li>
-                <li><img src={iconoyoutube} alt='youtube' ></img>k</li>
+                <li><img src={iconoyoutube} alt='youtube' ></img></li>
                 <li><img src={iconoinstagram} alt='instagram'></img></li>
-                <li>instagram</li>
-                <li>youtube</li>
             </ul>
         </div>
     )
