@@ -1,0 +1,23 @@
+.tsacs{
+    width: 1800;
+    background-color: aqua;
+    margin-left: 50px;
+    height: 100px;
+    margin-bottom: 5px;
+}
+.deoc{
+    display: inline-block;
+    background-color: rgb(255, 255, 255);
+    width: 275px;
+    height: 50px;
+    margin-left: 50px;
+    margin-top: 10px;
+}
+.ddic{
+    display: inline-block;
+    background-color: rgb(255, 255, 255);
+    width: 300px;
+    margin-left: 50px;
+    height: 50px;
+    margin-top: 10px;
+}

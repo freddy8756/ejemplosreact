@@ -1,0 +1,31 @@
+.tacs{
+    width: 1800;
+    background-color: aqua;
+    margin-left: 50px;
+    height: 300px;
+    margin-bottom: 5px;
+}
+.doc{
+    display: inline-block;
+    background-color: rgb(255, 255, 255);
+    width: 275px;
+    height: 180px;
+    margin-left: 50px;
+    margin-top: 10px;
+}
+.dic{
+    display: inline-block;
+    background-color: rgb(255, 255, 255);
+    width: 300px;
+    margin-left: 50px;
+    height: 170px;
+    margin-top: 10px;
+}
+.dooc{
+    display: inline-block;
+    background-color: rgb(255, 255, 255);
+    width: 245px;
+    margin-left: 50px;
+    height: 210px;
+    margin-top: 20px;
+}

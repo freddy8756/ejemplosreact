@@ -1,8 +1,9 @@
+import "./Exprecciones.css"
 function Expresiones(){
     const nombre = 'angel eutiquio';
     const apellidos = 'cruz huerta';
     return (
-        <div>
+        <div className="zona">
             <Lista/>
             <h2>expresiones</h2>
             <h3>tu nomobre es: {nombre} y tus apelldios es: {apellidos}</h3>
@@ -16,19 +17,19 @@ function Lista(){
         {id: 3, name: 'mario', role: 'isom leader'}
     ]
     return(
-        <div>
-            <table>
+        <div >
+            <table className="expre">
                 <tbody>
                     <tr>
-                     <th> nombre </th>
-                     <th> roll </th>
+                     <th className="table"> nombre </th>
+                     <th className="table"> roll </th>
                     </tr>
                     {
                         users.map(function(user,index){
                             return(
                                 <tr key={index}>
-                                 <td>{user.name}</td>
-                                 <td>{user.role}</td>
+                                 <td className="name">{user.name}</td>
+                                 <td className="name">{user.role}</td>
                                 </tr>
                             )
                         })

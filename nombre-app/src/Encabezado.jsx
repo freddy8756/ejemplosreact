@@ -1,8 +1,10 @@
 import miimagen from "./assets/images.jpg";
-import iconoFacebook from './assets/descarga.jpg';
-import iconowatsap from './assets/descarga (1).jpg';
-import iconoyoutube from './assets/descarga.png';
-import iconoinstagram from './assets/descarga (2).jpg';
+import iconoFacebook from './assets/imagen6.jpg';
+import iconowatsap from './assets/imagen7.jpg';
+import iconoyoutube from './assets/imagen5.jpg';
+import iconoinstagram from './assets/imagen8.jpg';
+import iconotiktok from './assets/tiktok.jpg';
+import iconotich from './assets/tich.jpg';
 import './Encabezado.css';
 function Encabezado(){
     return (
@@ -43,6 +45,8 @@ function Redes(){
                 <li><img src={iconowatsap} alt='watsap'></img></li>
                 <li><img src={iconoyoutube} alt='youtube' ></img></li>
                 <li><img src={iconoinstagram} alt='instagram'></img></li>
+                <li><img src={iconotiktok} alt='tiktok'></img></li>
+                <li><img src={iconotich} alt='tiwch'></img></li>
             </ul>
         </div>
     )
