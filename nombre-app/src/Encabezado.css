@@ -32,6 +32,11 @@
     color: rgb(0, 0, 0);
     cursor: pointer;
     font-size: 40px;
+    text-decoration: none;
+}
+.menudiv ul li:hover{
+    color: blueviolet;
+    background-color: chartreuse;
 }
 .redesdiv{
  display: inline-block;

@@ -10,14 +10,14 @@ function Tarjet(){
 function Doc(){
     return(
         <div className="deoc">
-            izquierda
+            <h2>Este es un ejemplo de pagina web con assets</h2>
         </div>
     )
 }
 function Dic(){
     return(
         <div className="ddic">
-            derecha
+            <h2 className="dera">aqui tambien encontraras cosas grandiosas</h2>
         </div>
     )
 }

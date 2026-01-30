@@ -1,18 +1,22 @@
 .zona{
-    background-color: aqua;
+    background-image:url("./assets/Imagen1.jpg");
     width: 97%;
     margin-left: 49px;
     align-items: center;
-    margin-bottom: 250px;
+    color: aliceblue;
+    
 }
+
 .expre{
     align-items: center;
 }
 .table{
     background-color: rgb(255, 255, 255);
     margin-left: 40px;
+    color: black;
 }
 .name{
     background-color: rgb(255, 255, 255);
     margin-left: 40px;
+    color: black;
 }
