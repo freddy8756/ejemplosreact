@@ -7,7 +7,7 @@ function App(){
   <div>
     <Encabezado /> 
     <Tarjeta/>
-   <Expresiones/>
+   <Expresiones name=""/>
    <Tarjet/>
   </div>
   )

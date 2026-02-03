@@ -5,6 +5,7 @@ function Expresiones(){
     return (
         <div className="zona">
             <Lista/>
+            <Promociones/>
             <h2>expresiones</h2>
             <h3>tu nomobre es: {nombre} y tus apelldios es: {apellidos}</h3>
         </div>
@@ -37,6 +38,21 @@ function Lista(){
                 </tbody>
             </table>
         </div>
+    )
+}
+function Promociones(props){
+    let user= props
+    console.info(user)
+    if(user.name!=""){
+        return(
+            <div className="promosDiv">
+                <h3>Seccion de promos</h3>
+                <p>estetica de actividades</p>
+            </div>
+        )
+    }
+    return(
+        <div><h3>no hay datos</h3></div>
     )
 }
 export default Expresiones

@@ -5,34 +5,45 @@ import "./Tarjeta.css"
 function Tarjeta(){
     return (
         <div className="tacs">
-            <Doc/>
-            <Dic/>
-            <Dooc/>
+            <Doc name='carroseria' descripcion='Un buen coche '/>
+            <Dic name='fabuloso' descripcion='El mas rapido de su tiempo'/>
+            <Dooc name='auto clasico' descripcion='Viejo coche' saludarfun={Saludar}/>
         </div>
     )
 }
-function Doc(){
+function Doc(props){
     return(
         <div className="doc">
             <img src={coche} alt='coche' ></img>
-            <h2>carroseria</h2>
+            <h2>{props.name}</h2>
+            <p>{props.descripcion}</p>
         </div>
     )
 }
-function Dic(){
+function Dic(props){
     return(
         <div className="dic">
                 <img src={cochea} alt='coche' ></img>
-                <h2>fabuloso hodson </h2>
+                <h2>{props.name}</h2>
+            <p>{props.descripcion}</p>
         </div>
     )
 }
-function Dooc(){
+function Dooc(props){
     return(
         <div className="dooc">
                 <img src={coches} alt='coche' ></img>
-                <h2>auto clasico</h2>
+                <h2>{props.name}</h2>
+            <p>{props.descripcion}</p>
+            <p>{props.saludarfun()}</p>
         </div>
     )
+}
+function Saludar(){
+ return(
+    <div>
+    
+    </div>
+ )
 }
 export default Tarjeta
