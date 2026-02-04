@@ -1,5 +1,5 @@
 import Encabezado from "./Encabezado"
-import Expresiones from "./exprecciones"
+import Expresiones from "./Exprecciones"
 import Tarjeta from "./Tarjeta"
 import Tarjet from "./Tarjet"
 function App(){
@@ -7,7 +7,7 @@ function App(){
   <div>
     <Encabezado /> 
     <Tarjeta/>
-   <Expresiones name=""/>
+   <Expresiones name="freddy"/>
    <Tarjet/>
   </div>
   )

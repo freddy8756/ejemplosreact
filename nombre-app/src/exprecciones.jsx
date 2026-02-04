@@ -1,16 +1,19 @@
 import "./Exprecciones.css"
-function Expresiones(){
+
+function Expresiones(props){
     const nombre = 'angel eutiquio';
     const apellidos = 'cruz huerta';
     return (
         <div className="zona">
-            <Lista/>
-            <Promociones/>
+            {/* Aquí pasamos la prop name hacia Promociones */}
+            <Promociones name={props.name}/>
             <h2>expresiones</h2>
-            <h3>tu nomobre es: {nombre} y tus apelldios es: {apellidos}</h3>
+            <h3>tu nombre es: {nombre} y tus apellidos son: {apellidos}</h3>
         </div>
     )
 }
+
+/*
 function Lista(){
     const users = [
         {id: 1, name: 'Eutiquio', role: 'web desiner'},
@@ -39,15 +42,14 @@ function Lista(){
             </table>
         </div>
     )
-}
-function Promociones(props){
-    let user= props
-    console.info(user)
-    if(user.name!=""){
+}*/
+function Promociones({name}){
+    console.info(name)
+    if(name !== ""){
         return(
             <div className="promosDiv">
                 <h3>Seccion de promos</h3>
-                <p>estetica de actividades</p>
+                <p>Bienvenido {name}, aquí están tus actividades</p>
             </div>
         )
     }
@@ -55,4 +57,5 @@ function Promociones(props){
         <div><h3>no hay datos</h3></div>
     )
 }
+
 export default Expresiones
