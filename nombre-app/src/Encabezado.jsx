@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import miimagen from "./assets/images.jpg";
 import iconoFacebook from './assets/imagen6.jpg';
 import iconowatsap from './assets/imagen7.jpg';
@@ -6,49 +7,60 @@ import iconoinstagram from './assets/imagen8.jpg';
 import iconotiktok from './assets/tiktok.jpg';
 import iconotich from './assets/tich.jpg';
 import './Encabezado.css';
-function Encabezado(){
-    return (
-    <div className="encabezadoDiv" >
-       <Logotipo />
-       <Menu />
-       <Redes />
-    </div>
-    )
-}
 
+function Encabezado({ cambiarvista }) {
+  return (
+    <div className="encabezadoDiv">
+      <Logotipo />
+      <Menu cambiarvista={cambiarvista} />
+      <Redes />
+    </div>
+  );
+}
 
 function Logotipo() {
-  return( 
+  return (
     <div className="logodiv">
-        <img src={miimagen} alt="ytjj"></img>
+      <img src={miimagen} alt="logo" />
     </div>
-  )
+  );
 }
-function Menu(){
-    return(
-        <div className="menudiv">
-            <ul>
-                <li>inicio</li>
-                <li>acerca de</li>
-                <li>productos</li>
-                <li>contacto</li>
-                <li>sucursales</li>
-            </ul>
-        </div>
-    )
+
+function Menu({ cambiarvista }) {
+  return (
+    <div className="menudiv">
+      <ul>
+        <li onClick={() => cambiarvista("Inicio")}>Inicio</li>
+        <li onClick={() => cambiarvista("AcercaDe")}>Acerca de</li>
+        <li onClick={() => cambiarvista("Productos")}>Productos</li>
+        <li onClick={() => cambiarvista("Contacto")}>Contacto</li>
+        <li onClick={() => cambiarvista("Sucursales")}>Sucursales</li>
+      </ul>
+    </div>
+  );
 }
-function Redes(){
-    return(
-        <div className="redesdiv">
-            <ul>
-                <li><img src={iconoFacebook} alt='Facebook' ></img></li>
-                <li><img src={iconowatsap} alt='watsap'></img></li>
-                <li><img src={iconoyoutube} alt='youtube' ></img></li>
-                <li><img src={iconoinstagram} alt='instagram'></img></li>
-                <li><img src={iconotiktok} alt='tiktok'></img></li>
-                <li><img src={iconotich} alt='tiwch'></img></li>
-            </ul>
-        </div>
-    )
+
+function Redes() {
+  return (
+    <div className="redesdiv">
+      <ul>
+        <li><img src={iconoFacebook} alt="Facebook" /></li>
+        <li><img src={iconowatsap} alt="WhatsApp" /></li>
+        <li><img src={iconoyoutube} alt="YouTube" /></li>
+        <li><img src={iconoinstagram} alt="Instagram" /></li>
+        <li><img src={iconotiktok} alt="TikTok" /></li>
+        <li><img src={iconotich} alt="Twitch" /></li>
+      </ul>
+    </div>
+  );
 }
-export default Encabezado
+
+Menu.propTypes = {
+  cambiarvista: PropTypes.func.isRequired,
+};
+
+Encabezado.propTypes = {
+  cambiarvista: PropTypes.func.isRequired,
+};
+
+export default Encabezado;

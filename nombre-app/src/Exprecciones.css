@@ -1,21 +1,35 @@
-.zona{
-    background-image:url("./assets/Imagen1.jpg");
+.zona {
+    background-image: url("./assets/Imagen1.jpg");
+    background-size: cover;       
+    background-position: center;  
     width: 97%;
-    margin-left: 49px;
-    align-items: center;
+    margin: 60px auto;           
     color: aliceblue;
-    margin-top: 60px;
+    padding: 20px;
+    border-radius: 8px;           
 }
-.expre{
-    align-items: center;
+
+.expre {
+    display: flex;               
+    justify-content: center;     
+    align-items: center;          
+    margin-top: 20px;
 }
-.table{
-    background-color: rgb(255, 255, 255);
-    margin-left: 40px;
-    color: black;
+
+.table {
+    background-color: #fff;
+    color: #000;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    text-align: center;
+    font-weight: bold;
 }
-.name{
-    background-color: rgb(255, 255, 255);
-    margin-left: 40px;
-    color: black;
+
+.name {
+    background-color: #fff;
+    color: #000;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    text-align: center;
 }
+
