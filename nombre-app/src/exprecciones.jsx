@@ -1,8 +1,8 @@
 import "./Exprecciones.css";
 
 function Expresiones(props) {
-  const nombre = "angel eutiquio";
-  const apellidos = "cruz huerta";
+  const nombre = "Darck";
+  const apellidos = "patner";
 
   return (
     <div className="zona">

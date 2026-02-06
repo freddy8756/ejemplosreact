@@ -1,13 +1,17 @@
 import coche from './assets/coche.jpg';
 import cochea from './assets/descarga.jpg';
 import coches from './assets/nd.jpg';
+import Acercade from './Acercade';
+import Productos from './Productos';
+import Contacto from './Contacto';  
+import Sucursales from './Sucursales'
 import "./Tarjeta.css";
 import PropTypes from 'prop-types';
 
 function ContenedorTargetas({ vista }) {
   const vistas = {
     Inicio: <Inicio />,
-    AcercaDe: <AcercaDe />,
+    AcercaDe: <Acercade />,
     Productos: <Productos />,
     Contacto: <Contacto />,
     Sucursales: <Sucursales />
@@ -24,41 +28,9 @@ function Inicio() {
   return (
     <>
       <TarjetComponent />
-      <TarjetComponent />
-      <TarjetComponent />
-      <TarjetComponent />
-      <TarjetComponent />
+      
     </>
   );
-}
-
-function AcercaDe() {
-  return ( 
-    <>
-     <TarjetComponen />
-    </>
-  )
-}
-function Productos() {
-  return(
-    <>
-     <TarjetCompone />
-    </>
-  )
-}
-function Contacto() {
-  return(
-    <>
-     <TarjetCompo />
-    </>
-  )
-}
-function Sucursales() {
-  return(
-    <>
-     <TarjetComposi />
-    </>
-  )
 }
 
 
@@ -70,45 +42,7 @@ function TarjetComponent() {
     </div>
   );
 }
-function TarjetComponen() {
-  return (
-    <div className="tarjeta">
-      <h3>Acerca de</h3>
-      <p>Lo que veras aqui son cosas como vehiculos antiguos que te pueden interesar para coleccionar o restaurar.</p>
-    </div>
-  );
-}
-function TarjetCompone() {
-  return (
-    <div className="tarjeta">
-      <h3>Productos</h3>
-      <p>Fabuloso hodson</p>
-      <p>vosh vaguen</p>
-      <p>vehiculo clasico</p>
-      <p>carroseria</p>
-    </div>
-  );
-}
-function TarjetCompo() {
-  return (
-    <div className="tarjeta">
-      <h3>Contacto</h3>
-      <p>Telefono: 123456789</p>
-      <p>Email: contacto@empresa.com</p>
-      <p>Sitio web: https://www.empresa.com</p>
-      <p>Año: 2001</p>
-    </div>
-  );
-}
-function TarjetComposi() {
-  return (
-    <div className="tarjeta">
-      <h3>Sucursales</h3>
-      <p>Ubicación: Calle Principal 123</p>
-      <p>Horario: Lunes a Viernes 9am - 6pm</p>
-    </div>
-  );
-}
+
 
 ContenedorTargetas.propTypes = {
   vista: PropTypes.string.isRequired,

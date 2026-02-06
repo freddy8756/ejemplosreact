@@ -1,0 +1,18 @@
+.contacto{
+background-color: rgb(216, 216, 216);
+    width: 275px;
+    height: 340px;           
+    text-align: center;
+    padding: 15px;
+    border-radius: 8px;       
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+.boton {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    align-items: center;
+}
