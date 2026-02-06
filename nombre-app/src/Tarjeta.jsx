@@ -33,23 +33,79 @@ function Inicio() {
 }
 
 function AcercaDe() {
-  return <h2>Acerca de nosotros</h2>;
+  return ( 
+    <>
+     <TarjetComponen />
+    </>
+  )
 }
 function Productos() {
-  return <h2>Nuestros productos</h2>;
+  return(
+    <>
+     <TarjetCompone />
+    </>
+  )
 }
 function Contacto() {
-  return <h2>Contacto</h2>;
+  return(
+    <>
+     <TarjetCompo />
+    </>
+  )
 }
 function Sucursales() {
-  return <h2>Sucursales</h2>;
+  return(
+    <>
+     <TarjetComposi />
+    </>
+  )
 }
+
 
 function TarjetComponent() {
   return (
     <div className="tarjeta">
       <h3>Tarjeta de producto</h3>
       <p>Descripción del producto</p>
+    </div>
+  );
+}
+function TarjetComponen() {
+  return (
+    <div className="tarjeta">
+      <h3>Acerca de</h3>
+      <p>Lo que veras aqui son cosas como vehiculos antiguos que te pueden interesar para coleccionar o restaurar.</p>
+    </div>
+  );
+}
+function TarjetCompone() {
+  return (
+    <div className="tarjeta">
+      <h3>Productos</h3>
+      <p>Fabuloso hodson</p>
+      <p>vosh vaguen</p>
+      <p>vehiculo clasico</p>
+      <p>carroseria</p>
+    </div>
+  );
+}
+function TarjetCompo() {
+  return (
+    <div className="tarjeta">
+      <h3>Contacto</h3>
+      <p>Telefono: 123456789</p>
+      <p>Email: contacto@empresa.com</p>
+      <p>Sitio web: https://www.empresa.com</p>
+      <p>Año: 2001</p>
+    </div>
+  );
+}
+function TarjetComposi() {
+  return (
+    <div className="tarjeta">
+      <h3>Sucursales</h3>
+      <p>Ubicación: Calle Principal 123</p>
+      <p>Horario: Lunes a Viernes 9am - 6pm</p>
     </div>
   );
 }
@@ -101,7 +157,7 @@ function Dooc(props) {
 }
 
 function Saludar() {
-  return "¡Hola desde Dooc!";
+  
 }
 
 export default Tarjeta;
