@@ -51,13 +51,20 @@ ContenedorTargetas.propTypes = {
 function Tarjeta({ vista }) {
   return (
     <div className="tacs">
-      <Doc name="carroseria" descripcion="Un buen coche" />
-      <Dic name="fabuloso" descripcion="El más rápido de su tiempo" />
-      <Dooc name="auto clásico" descripcion="Viejo coche" saludarfun={Saludar} />
+      
+      {vista !== "Contacto" && (
+        <>
+          <Doc name="carroseria" descripcion="Un buen coche" />
+          <Dic name="fabuloso" descripcion="El más rápido de su tiempo" />
+          <Dooc name="auto clásico" descripcion="Viejo coche" saludarfun={Saludar} />
+        </>
+      )}
+      
       <ContenedorTargetas vista={vista} />
     </div>
   );
 }
+
 
 function Doc(props) {
   return (
