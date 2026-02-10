@@ -51,8 +51,7 @@ ContenedorTargetas.propTypes = {
 function Tarjeta({ vista }) {
   return (
     <div className="tacs">
-      
-      {vista !== "Contacto" && (
+      {vista !== "AcercaDe" && vista !== "Productos" && vista !== "Contacto" && vista !== "Sucursales" && (
         <>
           <Doc name="carroseria" descripcion="Un buen coche" />
           <Dic name="fabuloso" descripcion="El más rápido de su tiempo" />
