@@ -1,5 +1,5 @@
 import "./Exprecciones.css";
-
+import {APIProvider,Map,AdvancedMarker,Pin}from '@vis.gl/react-@google-maps';
 function Expresiones(props) {
   const nombre = "Darck";
   const apellidos = "patner";
@@ -15,6 +15,7 @@ function Expresiones(props) {
 
 function Promociones({ name }) {
   if (name !== "") {
+    const position = {lat:20.270993,ing: -97.955102};
     return (
       <div className="promosDiv">
         <h3>Sección de promos</h3>
