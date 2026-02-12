@@ -1,52 +1,31 @@
-import "./Sucursales.css"
-import Mapa from "./mapa";
+import "./Sucursales.css";
+import Mapa from "./Mapa";
+
 function Sucursales() {
-  return(
-    <div className="sucursaless">
-    <>
-     <TarjetComposi name="alameda auyante" descripcion="cale mina" cordenadas="20.276324,-97.957975"/>
-     <TarjetComposise name="parque placentero" descripcion="calle alvarado" cordenadas="20.276471 ,-97.957765"/>
-      <TarjetComposisew name="señorio de la sal"descripcion="calle florida"cordenadas="20.275731,-97.957807"/>
-    </>
-    </div>
-  )
-}
-function TarjetComposisew(props) {
+  const sedes = [
+    { id: 1, name: "Alameda Auyante", descripcion: "Calle Mina", lat: 20.276324, lng: -97.957975 },
+    { id: 2, name: "Parque Placentero", descripcion: "Calle Alvarado", lat: 20.276471, lng: -97.957765 },
+    { id: 3, name: "Señorio de la Sal", descripcion: "Calle Florida", lat: 20.275731, lng: -97.957807 }
+  ];
+
   return (
-    <div className="sucursalesss">
-      <h2>{props.name}</h2>
-      <p>{props.descripcion}</p>
-      <p>{props.cordenadas}</p>
-      <Mapa 
-         lat={20.276324 }
-         ing={-97.957975}
-        />
+    <div className="sucursaless">
+      <div className="classSedes">
+        {sedes.map((sede) => (
+          <Tarjeta key={sede.id} {...sede} />
+        ))}
+      </div>
     </div>
   );
 }
-function TarjetComposi(props) {
+
+function Tarjeta({ name, descripcion, lat, lng }) {
   return (
     <div className="sucursal">
-      <h2>{props.name}</h2>
-      <p>{props.descripcion}</p>
-      <p>{props.cordenadas}</p>
-      <Mapa 
-         lat={20.276471 }
-         ing={-97.957765}
-        />
-    </div>
-  );
-}
-function TarjetComposise(props) {
-  return (
-    <div className="sucursale">
-      <h2>{props.name}</h2>
-      <p>{props.descripcion}</p>
-      <p>{props.cordenadas}</p>
-      <Mapa 
-         lat={20.275731}
-         ing={-97.957807}
-        />
+      <h3>{name}</h3>
+      <p>{descripcion}</p>
+      <p> {lat}, {lng}</p>
+      <Mapa lat={lat} lng={lng} />
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import "./Exprecciones.css";
-import Mapa from "./mapa";
+import Mapa from "./Mapa";
 function Expresiones(props) {
   const nombre = "Darck";
   const apellidos = "patner";
@@ -21,7 +21,7 @@ function Promociones({ name }) {
         <p>Bienvenido {name}, aquí están tus actividades</p>
         <Mapa
          lat={20.276324 }
-         ing={-97.957975}
+         lng={-97.957975}
          nombre={"servicio sucursal"}
         />
       </div>

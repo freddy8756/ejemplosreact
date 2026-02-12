@@ -27,19 +27,9 @@ function ContenedorTargetas({ vista }) {
 function Inicio() {
   return (
     <>
-      <TarjetComponent />
+      
       
     </>
-  );
-}
-
-
-function TarjetComponent() {
-  return (
-    <div className="tarjeta">
-      <h3>Tarjeta de producto</h3>
-      <p>Descripción del producto</p>
-    </div>
   );
 }
 
