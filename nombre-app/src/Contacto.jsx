@@ -52,7 +52,7 @@ function TarjetCompo() {
       <input value={correo} onChange={(e) => setCorreo(e.target.value)} />
 
       {error && <p className="error">{error}</p>} 
-
+      <p></p>
       <button className="boton" onClick={enviar}>Enviar</button>
     </div>
   );

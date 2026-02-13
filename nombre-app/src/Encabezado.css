@@ -1,5 +1,5 @@
 .encabezadoDiv {
-    background-color: bisque;
+    background-color: rgb(48, 45, 207);
     width: 1450px;                 
     max-width: 1500px;          
     margin: 0 auto;              
@@ -36,8 +36,8 @@
 }
 
 .menudiv ul li:hover {
-    color: blueviolet;
-    background-color: chartreuse;
+    color: rgb(255, 255, 255);
+    background-color: rgb(170, 54, 79);
     border-radius: 4px;
     padding: 5px 10px;
 }
