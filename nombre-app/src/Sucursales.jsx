@@ -9,23 +9,23 @@ function Sucursales() {
   ];
 
   return (
-    <div className="sucursaless">
-      <div className="classSedes">
+    <div className="sucursales">
+      <div className="sedes">
         {sedes.map((sede) => (
-          <Tarjeta key={sede.id} {...sede} />
+          <Tarjeta key={sede.id} sede={sede} sedes={sedes} />
         ))}
       </div>
     </div>
   );
 }
 
-function Tarjeta({ name, descripcion, lat, lng }) {
+function Tarjeta({ sede, sedes }) {
   return (
     <div className="sucursal">
-      <h3>{name}</h3>
-      <p>{descripcion}</p>
-      <p> {lat}, {lng}</p>
-      <Mapa lat={lat} lng={lng} />
+      <h3>{sede.name}</h3>
+      <p>{sede.descripcion}</p>
+      <p>{sede.lat}, {sede.lng}</p>
+      <Mapa sucursal={sede} sucursales={sedes} />
     </div>
   );
 }
