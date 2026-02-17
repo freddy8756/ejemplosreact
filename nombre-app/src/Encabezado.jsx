@@ -7,6 +7,7 @@ import iconoinstagram from './assets/imagen8.jpg';
 import iconotiktok from './assets/tiktok.jpg';
 import iconotich from './assets/tich.jpg';
 import './Encabezado.css';
+import Clima from "./Clima";
 
 function Encabezado({ cambiarvista }) {
   return (
@@ -51,6 +52,7 @@ function Redes() {
         <li><img src={iconotiktok} alt="TikTok" /></li>
         <li><img src={iconotich} alt="Twitch" /></li>
       </ul>
+      <Clima/>
     </div>
   );
 }
