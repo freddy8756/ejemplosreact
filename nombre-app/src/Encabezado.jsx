@@ -32,6 +32,7 @@ function Menu({ cambiarvista }) {
     <div className="menudiv">
       <ul>
         <li onClick={() => cambiarvista("Inicio")}>Inicio</li>
+        <li onClick={() => cambiarvista("Usuarios")}>Usuarios</li>
         <li onClick={() => cambiarvista("AcercaDe")}>Acerca de</li>
         <li onClick={() => cambiarvista("Productos")}>Productos</li>
         <li onClick={() => cambiarvista("Contacto")}>Contacto</li>

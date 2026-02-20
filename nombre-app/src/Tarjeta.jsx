@@ -3,7 +3,8 @@ import cochea from './assets/descarga.jpg';
 import coches from './assets/nd.jpg';
 import Acercade from './Acercade';
 import Productos from './Productos';
-import Contacto from './Contacto';  
+import Contacto from './Contacto';
+import Usuarios from './Usuarios';  
 import Sucursales from './Sucursales'
 import "./Tarjeta.css";
 import PropTypes from 'prop-types';
@@ -11,6 +12,7 @@ import PropTypes from 'prop-types';
 function ContenedorTargetas({ vista }) {
   const vistas = {
     Inicio: <Inicio />,
+    Usuarios: <Usuarios/>,
     AcercaDe: <Acercade />,
     Productos: <Productos />,
     Contacto: <Contacto />,
@@ -41,7 +43,7 @@ ContenedorTargetas.propTypes = {
 function Tarjeta({ vista }) {
   return (
     <div className="tacs">
-      {vista !== "AcercaDe" && vista !== "Productos" && vista !== "Contacto" && vista !== "Sucursales" && (
+      {vista !=="Usuarios" && vista !== "AcercaDe" && vista !== "Productos" && vista !== "Contacto" && vista !== "Sucursales" && (
         <>
           <Doc name="carroseria" descripcion="Un buen coche" />
           <Dic name="fabuloso" descripcion="El más rápido de su tiempo" />
