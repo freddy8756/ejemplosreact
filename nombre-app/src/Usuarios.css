@@ -1,0 +1,46 @@
+.usuarios-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.usuarios-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.usuarios-table th,
+.usuarios-table td {
+  border: 1px solid #9c3b3b;
+  padding: 12px;
+  text-align: center;
+}
+
+.usuarios-table th {
+  background-color: #1c9bc2;
+  color: #fff;
+}
+
+.usuarios-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.btn.editar, .btn.eliminar {
+  padding: 6px 12px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn.editar {
+  background-color: #4caf50;
+  color: white;
+}
+
+.btn.eliminar {
+  background-color: #f44336;
+  color: white;
+}

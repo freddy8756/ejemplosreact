@@ -1,21 +1,24 @@
-.producto{
-width: 1500px;             
-    max-width: 1800px;        
-    background-color: #9b4a4a;
-    margin: 0 auto;           
-    padding: 20px;
-    display: flex;            
-    flex-wrap: wrap;          
-    justify-content: center; 
-    gap: 40px; 
+/* Contenedor de productos basa*/
+.productos-container {
+  width: 1500px;             
+  max-width: 1800px;        
+  background-color: #717070;
+  margin: 0 auto;           
+  padding: 20px;
+  display: flex;            
+  flex-wrap: wrap;          
+  justify-content: center; 
+  gap: 40px; 
 }
-.producto{
-    background-color: aqua;
- width: 275px;
-    height: 600px;           
-    text-align: center;
-    padding: 15px;
-    border-radius: 8px;       
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-    margin: 10px;
+
+/* Tarjeta para cada uno de mis productos */
+.producto-card {
+  background-color: rgb(4, 234, 234);
+  width: 275px;
+  height: 600px;           
+  text-align: center;
+  padding: 15px;
+  border-radius: 8px;       
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  margin: 10px;
 }
