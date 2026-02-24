@@ -5,7 +5,8 @@ import Acercade from './Acercade';
 import Productos from './Productos';
 import Contacto from './Contacto';
 import Usuarios from './Usuarios';  
-import Sucursales from './Sucursales'
+import Cards from './Cards';
+import Sucursales from './Sucursales';
 import "./Tarjeta.css";
 import PropTypes from 'prop-types';
 
@@ -14,6 +15,7 @@ function ContenedorTargetas({ vista }) {
     Inicio: <Inicio />,
     Usuarios: <Usuarios/>,
     AcercaDe: <Acercade />,
+    Cards: <Cards/>,
     Productos: <Productos />,
     Contacto: <Contacto />,
     Sucursales: <Sucursales />
@@ -41,13 +43,22 @@ ContenedorTargetas.propTypes = {
 };
 
 function Tarjeta({ vista }) {
+  const zona = [
+    {id: 1, name: "Carroseria", descripcion:"Un buen coche", src:coche},
+    {id: 2, name: "Fabuloso", descripcion:"Un buen coche", src:cochea},
+    {id: 3, name: "Auto clasico", descripcion:"Un buen coche", src:coches}
+  ] 
   return (
-    <div className="tacs">
-      {vista !=="Usuarios" && vista !== "AcercaDe" && vista !== "Productos" && vista !== "Contacto" && vista !== "Sucursales" && (
-        <>
-          <Doc name="carroseria" descripcion="Un buen coche" />
-          <Dic name="fabuloso" descripcion="El más rápido de su tiempo" />
-          <Dooc name="auto clásico" descripcion="Viejo coche" saludarfun={Saludar} />
+    <div className="inicio">
+      {vista !=="Usuarios" && vista !== "AcercaDe" && vista !== "Cards" && vista !== "Productos" && vista !== "Contacto" && vista !== "Sucursales" && (
+       <>
+          {zona.map((item) => (
+            <div key={item.id} className="inicio-card">
+              <h3>{item.name}</h3>
+              <p>{item.descripcion}</p>
+              <img src={item.src} alt={item.name} />
+            </div>
+          ))}
         </>
       )}
       
@@ -56,40 +67,5 @@ function Tarjeta({ vista }) {
   );
 }
 
-
-function Doc(props) {
-  return (
-    <div className="doc">
-      <img src={coche} alt="coche" />
-      <h2>{props.name}</h2>
-      <p>{props.descripcion}</p>
-    </div>
-  );
-}
-
-function Dic(props) {
-  return (
-    <div className="dic">
-      <img src={cochea} alt="coche" />
-      <h2>{props.name}</h2>
-      <p>{props.descripcion}</p>
-    </div>
-  );
-}
-
-function Dooc(props) {
-  return (
-    <div className="dooc">
-      <img src={coches} alt="coche" />
-      <h2>{props.name}</h2>
-      <p>{props.descripcion}</p>
-      <p>{props.saludarfun()}</p>
-    </div>
-  );
-}
-
-function Saludar() {
-  
-}
 
 export default Tarjeta;

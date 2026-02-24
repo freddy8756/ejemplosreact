@@ -2,8 +2,8 @@ import { useEffect, useState } from "react"
 import coche from "./assets/coche.jpg"
 import "./Producto.css"
 import api from "./servicios/api"
+import Registrarpro from "./Registrarpro"
 function Productos() {
-
   const vehiculos = [
     { id: 1, nombre: "Coche",descripcion:"Vehiculo con buena velocidad y buena estabilidad", imagen: coche },
     { id: 2, nombre: "cochesito",descripcion:"Este coche tiene buena pintura", imagen: coche },
@@ -29,6 +29,7 @@ function Productos() {
   if(loading) return <p>Cargando....</p>
   return(
     <div>
+      
       <main className="productos-container">
   {vehiculos.map((pro) => (
     <article key={pro.id} className="producto-card">
@@ -38,6 +39,7 @@ function Productos() {
     </article>
   ))}
 </main>
+    <Registrarpro/>
 
     </div>
   )
