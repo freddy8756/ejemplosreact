@@ -1,7 +1,7 @@
 import "./Usuarios.css";
 import { useEffect, useState } from "react";
 import api from "./servicios/api";
-
+import Registrousua from "./Registrousua.jsx";
 function Usuarios() {
   const [usuarios, setUsuarios] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -47,6 +47,7 @@ function Usuarios() {
           ))}
         </tbody>
       </table>
+      <Registrousua />
     </div>
   );
 }
