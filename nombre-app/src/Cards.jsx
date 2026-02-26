@@ -3,51 +3,48 @@ import api from "./servicios/api";
 import { useEffect, useState } from "react";
 
 function Cards({id}) {
-  const [productos, setProductos] = useState([]);
+  const [carrito, setCarrito] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!id) {
-      console.warn("No se recibió un id válido para el carrito");
+      console.warn("No se recibió un carrito");
       setLoading(false);
       return;
     }
 
-    const obtenerProductos = async () => {
+    const obtenerCarrito = async () => {
       try {
-        const response = await api.get(`/carts/${id}`);
-        const productosCarrito = response.data.products;
+        const response = await api.get(`/carts`);
+        const productosCarrito = response.data.carrito;
 
         const detalles = await Promise.all(
           productosCarrito.map(async (pro) => {
-            const resProd = await api.get(`/products/${pro.productId}`);
+            const resProd = await api.get(`/carts/products`);
             return { ...resProd.data, quantity: pro.quantity };
           })
         );
 
-        setProductos(detalles);
+        setCarrito(detalles);
       } catch (error) {
-        console.error("Error al obtener productos: ", error);
+        console.error("Error al obtener carrito: ", error);
       } finally {
         setLoading(false);
       }
     };
 
-    obtenerProductos();
+    obtenerCarrito();
   }, [id]);
 
   if (loading) return <p>Cargando...</p>;
 
   return (
     <main className="productos-container">
-      {productos.map((pro) => (
+      {carrito.map((pro) => (
         <article key={pro.id} className="producto-card">
-          <img src={pro.image} alt={`Imagen de ${pro.title}`} />
-          <p className="producto-titulo">{pro.title}</p>
-          <p className="producto-precio">
-            {new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'USD' }).format(pro.price)}
-          </p>
-          <p className="producto-cantidad">Cantidad: {pro.quantity}</p>
+          <p>{pro.userId}</p>
+          <p>{pro.date}</p>
+          <p>{pro.products}</p>
         </article>
       ))}
     </main>

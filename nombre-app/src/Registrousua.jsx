@@ -3,20 +3,19 @@ import api from './servicios/api';
 import './Resgitrousua.css';
 
 function Registrousua() {
-  const [name, setName] = useState('');
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const nuevousuario = { name, email, password };
+    const nuevousuario = { username, email, password };
 
     try {
       const respuesta = await api.post('/users', nuevousuario);
       console.log('Usuario registrado: ', respuesta.data);
       alert('¡Usuario guardado con éxito!');
-      // limpiar formulario
-      setName('');
+      setUsername('');
       setEmail('');
       setPassword('');
     } catch (error) {
@@ -32,8 +31,8 @@ function Registrousua() {
         <input
           type="text"
           placeholder="Nombre"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
           required
         />
         <input

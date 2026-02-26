@@ -13,11 +13,11 @@ const handleSubmit = async (e) => {
     e.preventDefault();
     const nuevoproducto ={title,price,description,category,image}
     try{
-        const respuesta = await api.post('/productos',nuevoproducto);
+        const respuesta = await api.post('/products',nuevoproducto);
         console.log('Producto registrado: ',respuesta.data);
         alert('¡producto guardado con exito!');
     }catch(error){
-        console.error('Error al registrar:', error);
+        console.error('Error al registrar:');
     }
 }
 return(
@@ -50,7 +50,7 @@ return(
             />
             <input
             type="text"
-            placeholder="descripcion"
+            placeholder="imagen"
             value={image}
             onChange={(e) => setImage(e.target.value)}
             />

@@ -1,4 +1,3 @@
-/* Contenedor de productos */
 .productos-container {
   width: 100%;              
   max-width: 1800px;        
@@ -11,7 +10,6 @@
   gap: 20px;
 }
 
-/* Tarjeta de producto */
 .producto-card {
   background-color: #ffffff;
   flex: 1 1 250px;
@@ -26,7 +24,6 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Imagen del producto */
 .producto-card img {
   max-width: 100%;
   height: 180px;
@@ -34,7 +31,6 @@
   margin-bottom: 10px;
 }
 
-/* Texto dentro de la tarjeta */
 .producto-titulo {
   font-family: 'Segoe UI', sans-serif;
   font-size: 16px;
@@ -54,13 +50,11 @@
   color: #555;
 }
 
-/* Efecto hover */
 .producto-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.25);
 }
 
-/* Responsividad */
 @media (max-width: 768px) {
   .productos-container {
     gap: 10px;
