@@ -1,0 +1,54 @@
+.Card-fo {
+  width: 600px;
+  margin: 40px auto;
+  padding: 25px;
+  background: #2f00ff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.Card-fo h2 {
+  text-align: center;
+  color:  #ffffff;
+  margin-bottom: 20px;
+}
+
+.Card-fo form {
+  display: flex;
+  flex-direction: column;
+}
+
+.Card-fo label {
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.Card-fo input {
+  padding: 10px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+}
+
+.Card-fo input:focus {
+  border-color: #0078d7;
+  outline: none;
+}
+
+.Card-fo button {
+  padding: 12px;
+  background: #0078d7;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.Card-fo button:hover {
+  background: #005fa3;
+}
