@@ -31,11 +31,16 @@ function Productos() {
     <div>
       
       <main className="productos-container">
-  {vehiculos.map((pro) => (
+  {productos.map((pro) => (
     <article key={pro.id} className="producto-card">
-      <p>{pro.nombre}</p>
-      <p>{pro.descripcion}</p>
-      <img src={pro.imagen} alt={pro.nombre} />
+      <p className="productos-titulo">{pro.title}</p>
+      <p className="productos-precio">{pro.price}</p>
+      <p className="productos-descripcion">{pro.description}</p>
+      <p className="productos-categoria">{pro.category}</p>
+      <img src={pro.image} />
+      <p></p>
+      <button className="dic">Agregar</button>
+      <button className="doc" onClick={() => eliminarproducto(pro.id)}>Eliminar</button>
     </article>
   ))}
 </main>
@@ -43,6 +48,17 @@ function Productos() {
 
     </div>
   )
-
+}
+const eliminarproducto = async (productoid) => {
+  try {
+    const response = await api.delete(
+      `/products/${productoid}`
+    );
+    console.log(response.data);
+    alert("Producto eliminado correctamente");
+  }catch(error){
+    console.error("Error al eliminar producto: ", error);
+    alert("Error al eliminar producto");
+  }
 }
 export default Productos

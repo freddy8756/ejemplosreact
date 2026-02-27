@@ -57,8 +57,8 @@ function Cards() {
               <h4 className="producto-titulo">{producto.title}</h4>
               <p className="producto-cantidad">Cantidad: {producto.quantity}</p>
               <p className="producto-precio">Precio: ${producto.price}</p>
-              <button className="doc">Agregar</button>
-              <button className="doc">Eliminar</button>
+              <button className="dic">Editar</button>
+              <button className="doc" onClick={() => eliminarCards(carrito.id)}>Eliminar</button>
             </div>
           ))}
         </div>
@@ -67,5 +67,15 @@ function Cards() {
     </div>
   );
 }
-
+const eliminarCards = async (carritoid) =>{
+  try {
+    const response = await api.delete(
+      `/carts/${carritoid}`
+    );
+    console.log(response.data);
+    alert("carrito eliminado correctamente");
+  }catch(error){
+    console.error("Error al eliminar carrito:", error);
+  }
+};
 export default Cards;

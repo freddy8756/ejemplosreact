@@ -42,7 +42,7 @@ function Usuarios() {
               <td>{u.username}</td>
               <td>{u.email}</td>
               <td><button className="btn editar">Editar</button></td>
-              <td><button className="btn eliminar">Eliminar</button></td>
+              <td><button className="btn eliminar" onClick={() => eliminarUsuario(u.id)}>Eliminar</button></td>
             </tr>
           ))}
         </tbody>
@@ -51,5 +51,15 @@ function Usuarios() {
     </div>
   );
 }
-
+const eliminarUsuario = async (Usuarioid) =>{
+  try {
+    const response = await api.delete(
+      `/users/${Usuarioid}`
+    );
+    console.log(response.data);
+    alert("Usuario eliminado correctamente");
+  }catch(error){
+    console.error("Error al eliminar usuario:", error);
+  }
+};
 export default Usuarios;
