@@ -1,32 +1,53 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import api from './servicios/api';
 import './Resgitrousua.css';
 
-function Registrousua() {
+function Registrousua({ usuarioEditado, onGuardado }) {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const nuevousuario = { username, email, password };
-
-    try {
-      const respuesta = await api.post('/users', nuevousuario);
-      console.log('Usuario registrado: ', respuesta.data);
-      alert('¡Usuario guardado con éxito!');
+  useEffect(() => {
+    if (usuarioEditado) {
+      setUsername(usuarioEditado.username || '');
+      setEmail(usuarioEditado.email || '');
+      setPassword('');
+    } else {
       setUsername('');
       setEmail('');
       setPassword('');
+    }
+  }, [usuarioEditado]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const datosUsuario = { username, email, password };
+
+    try {
+      if (usuarioEditado) {
+        const respuesta = await api.put(`/users/${usuarioEditado.id}`, datosUsuario);
+        console.log('Usuario actualizado: ', respuesta.data);
+        alert('¡Usuario actualizado con éxito!');
+      } else {
+        const respuesta = await api.post('/users', datosUsuario);
+        console.log('Usuario registrado: ', respuesta.data);
+        alert('¡Usuario guardado con éxito!');
+      }
+
+      setUsername('');
+      setEmail('');
+      setPassword('');
+      if (onGuardado) onGuardado();
+
     } catch (error) {
-      console.error('Error al registrar:', error);
-      alert('Hubo un error al registrar el usuario');
+      console.error('Error al guardar:', error);
+      alert('Hubo un error al guardar el usuario');
     }
   };
 
   return (
     <div className="pagina">
-      <h2>Registrar usuario</h2>
+      <h2>{usuarioEditado ? "Editar usuario" : "Registrar usuario"}</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -47,10 +68,12 @@ function Registrousua() {
           placeholder="Contraseña"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          required
+          required={!usuarioEditado} 
         />
         <p></p>
-        <button type="submit">Enviar</button>
+        <button type="submit">
+          {usuarioEditado ? "Actualizar" : "Enviar"}
+        </button>
       </form>
     </div>
   );

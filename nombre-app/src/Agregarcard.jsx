@@ -1,15 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import api from "./servicios/api.js";
 import "./Agregarcard.css";
-function FormCarrito() {
+
+function FormCarrito({ carritoEditado, onGuardado, onCancelar }) {
   const [userId, setUserId] = useState("");
   const [productId, setProductId] = useState("");
   const [quantity, setQuantity] = useState("");
+  useEffect(() => {
+    if (carritoEditado) {
+      setUserId(carritoEditado.userId || "");
+      if (carritoEditado.products && carritoEditado.products.length > 0) {
+        setProductId(carritoEditado.products[0].id || carritoEditado.products[0].productId || "");
+        setQuantity(carritoEditado.products[0].quantity || "");
+      }
+    } else {
+      setUserId("");
+      setProductId("");
+      setQuantity("");
+    }
+  }, [carritoEditado]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const nuevoCarrito = {
+    const datosCarrito = {
       userId: Number(userId),
       products: [
         {
@@ -20,26 +34,28 @@ function FormCarrito() {
     };
 
     try {
-      const respuesta = await api.post("/carts", nuevoCarrito);
-      console.log("Carrito creado:", respuesta.data);
-      alert("Carrito creado");
+      if (carritoEditado) {
+        await api.put(`/carts/${carritoEditado.id}`, datosCarrito);
+        alert("Carrito actualizado correctamente");
+      } else {
+        await api.post("/carts", datosCarrito);
+        alert("Carrito creado correctamente");
+      }
 
-      setUserId("");
-      setProductId("");
-      setQuantity("");
-
+      if (onGuardado) onGuardado();
+      if (onCancelar) onCancelar();
     } catch (error) {
-      console.error("Error al crear carrito:", error);
-      alert("Error al crear carrito");
+      console.error("Error al guardar carrito:", error);
+      alert("Error al guardar carrito");
     }
   };
 
   return (
     <div className="Card-fo">
-      <h2>Crear Carrito</h2>
+      <h2>{carritoEditado ? "Editar Carrito" : "agregar Carrito"}</h2>
 
       <form onSubmit={handleSubmit}>
-        <label>id de usuarios:</label>
+        <label>ID de usuario:</label>
         <input
           type="number"
           value={userId}
@@ -47,7 +63,7 @@ function FormCarrito() {
           required
         />
 
-        <label>id de productos:</label>
+        <label>ID de producto:</label>
         <input
           type="number"
           value={productId}
@@ -63,7 +79,9 @@ function FormCarrito() {
           required
         />
 
-        <button type="submit">Crear Carrito</button>
+        <button type="submit">
+          {carritoEditado ? "Actualizar Carrito" : "Crear Carrito"}
+        </button>
       </form>
     </div>
   );

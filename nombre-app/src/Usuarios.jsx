@@ -2,25 +2,42 @@ import "./Usuarios.css";
 import { useEffect, useState } from "react";
 import api from "./servicios/api";
 import Registrousua from "./Registrousua.jsx";
+
 function Usuarios() {
   const [usuarios, setUsuarios] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [usuarioEditado, setUsuarioEditado] = useState(null);
+
+  const obtenerUsuarios = async () => {
+    try {
+      const response = await api.get("/users");
+      setUsuarios(response.data);
+    } catch (error) {
+      console.error("Error al obtener Usuarios: ", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const obtenerUsuarios = async () => {
-      try {
-        const response = await api.get("/users");
-        setUsuarios(response.data);
-      } catch (error) {
-        console.error("Error al obtener Usuarios: ", error);
-      } finally {
-        setLoading(false);
-      }
-    };
     obtenerUsuarios();
   }, []);
 
   if (loading) return <p>Cargando....</p>;
+
+  const editarUsuario = (usuario) => {
+    setUsuarioEditado(usuario);
+  };
+
+  const eliminarUsuario = async (Usuarioid) => {
+    try {
+      await api.delete(`/users/${Usuarioid}`);
+      alert("Usuario eliminado correctamente");
+      obtenerUsuarios(); 
+    } catch (error) {
+      console.error("Error al eliminar usuario:", error);
+    }
+  };
 
   return (
     <div className="usuarios-container">
@@ -32,7 +49,7 @@ function Usuarios() {
             <th>Nombre</th>
             <th>Email</th>
             <th>Editar</th>
-            <th>Eiminar</th>
+            <th>Eliminar</th>
           </tr>
         </thead>
         <tbody>
@@ -41,25 +58,23 @@ function Usuarios() {
               <td>{u.id}</td>
               <td>{u.username}</td>
               <td>{u.email}</td>
-              <td><button className="btn editar">Editar</button></td>
-              <td><button className="btn eliminar" onClick={() => eliminarUsuario(u.id)}>Eliminar</button></td>
+              <td>
+                <button className="btn editar" onClick={() => editarUsuario(u)}>
+                  Editar
+                </button>
+              </td>
+              <td>
+                <button className="btn eliminar" onClick={() => eliminarUsuario(u.id)}>
+                  Eliminar
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <Registrousua />
+      <Registrousua usuarioEditado={usuarioEditado} onGuardado={obtenerUsuarios} />
     </div>
   );
 }
-const eliminarUsuario = async (Usuarioid) =>{
-  try {
-    const response = await api.delete(
-      `/users/${Usuarioid}`
-    );
-    console.log(response.data);
-    alert("Usuario eliminado correctamente");
-  }catch(error){
-    console.error("Error al eliminar usuario:", error);
-  }
-};
+
 export default Usuarios;
