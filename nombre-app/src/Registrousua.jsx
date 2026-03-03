@@ -11,7 +11,7 @@ function Registrousua({ usuarioEditado, onGuardado }) {
     if (usuarioEditado) {
       setUsername(usuarioEditado.username || '');
       setEmail(usuarioEditado.email || '');
-      setPassword('');
+      setPassword(usuarioEditado.password || '');
     } else {
       setUsername('');
       setEmail('');
@@ -20,11 +20,12 @@ function Registrousua({ usuarioEditado, onGuardado }) {
   }, [usuarioEditado]);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault();//evita que la pagina se recargue al enviar el formulario
     const datosUsuario = { username, email, password };
 
     try {
       if (usuarioEditado) {
+        //actualizar
         const respuesta = await api.put(`/users/${usuarioEditado.id}`, datosUsuario);
         console.log('Usuario actualizado: ', respuesta.data);
         alert('¡Usuario actualizado con éxito!');
@@ -68,7 +69,7 @@ function Registrousua({ usuarioEditado, onGuardado }) {
           placeholder="Contraseña"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          required={!usuarioEditado} 
+          required 
         />
         <p></p>
         <button type="submit">
