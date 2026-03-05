@@ -8,6 +8,7 @@ import iconotiktok from './assets/tiktok.jpg';
 import iconotich from './assets/tich.jpg';
 import './Encabezado.css';
 import Clima from "./Clima";
+import { useAuth } from "./Authcontex";
 
 function Encabezado({ cambiarvista }) {
   return (
@@ -28,16 +29,27 @@ function Logotipo() {
 }
 
 function Menu({ cambiarvista }) {
+  const {isLoggedin}=useAuth
   return (
     <div className="menudiv">
       <ul>
-        <li onClick={() => cambiarvista("Inicio")}>Inicio</li>
-        <li onClick={() => cambiarvista("Usuarios")}>Usuarios</li>
+        
+        
         <li onClick={() => cambiarvista("AcercaDe")}>Acerca de</li>
-        <li onClick={() => cambiarvista("Cards")}>Carts</li>
+        
         <li onClick={() => cambiarvista("Productos")}>Productos</li>
         <li onClick={() => cambiarvista("Contacto")}>Contacto</li>
+        <li onClick={() => cambiarvista("Iniciosesion")}>Inicio de sesion</li>
         <li onClick={() => cambiarvista("Sucursales")}>Sucursales</li>
+        {isLoggedin ? (
+        <>
+          <li onClick={() => cambiarvista("Usuarios")}>Usuarios</li>
+          <li onClick={() => cambiarvista("Cards")}>Carts</li>
+          <li>cerrar sesion</li>
+        </>
+        ) : (
+          <li onClick={() => cambiarvista("Inicio")}>Inicio</li>
+        )}
       </ul>
     </div>
   );

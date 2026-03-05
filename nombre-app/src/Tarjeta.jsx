@@ -4,7 +4,8 @@ import coches from './assets/nd.jpg';
 import Acercade from './Acercade';
 import Productos from './Productos';
 import Contacto from './Contacto';
-import Usuarios from './Usuarios';  
+import Usuarios from './Usuarios';
+import Iniciosesion from './iniciosesion';  
 import Cards from './Cards';
 import Sucursales from './Sucursales';
 import "./Tarjeta.css";
@@ -18,6 +19,7 @@ function ContenedorTargetas({ vista }) {
     Cards: <Cards/>,
     Productos: <Productos />,
     Contacto: <Contacto />,
+    Iniciosesion:<Iniciosesion/>,
     Sucursales: <Sucursales />
   };
 
@@ -50,7 +52,7 @@ function Tarjeta({ vista }) {
   ] 
   return (
     <div className="inicio">
-      {vista !=="Usuarios" && vista !== "AcercaDe" && vista !== "Cards" && vista !== "Productos" && vista !== "Contacto" && vista !== "Sucursales" && (
+      {vista !=="Usuarios" && vista !== "AcercaDe" && vista !== "Cards" && vista !== "Productos" && vista !== "Contacto"&& vista !== "Iniciosesion"  && vista !== "Sucursales" && (
        <>
           {zona.map((item) => (
             <div key={item.id} className="inicio-card">
