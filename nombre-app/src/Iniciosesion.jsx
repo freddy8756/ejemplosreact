@@ -1,66 +1,47 @@
 import { useState } from "react";
 import "./Iniciosesion.css";
-import Iniciose from "./assets/usuarios.png"
-function Iniciosesion() {
-  return (
-    <>
-      <TarjetCompo />
-    </>
-  );
-}
+import Iniciose from "./assets/usuarios.png";
 
-function TarjetCompo() {
-  const [nombre, setNombre] = useState("");
-  const [telefono, setTelefono] = useState("");
-  const [correo, setCorreo] = useState("");
-  const [error, setError] = useState("");
+const Iniciosesion = ({chVista})=>{
 
-  const validar = () => {
-    
-    if (nombre.trim() === "") {
-      setError("El nombre no puede estar vacío");
-      return false;
-    }
-    if (!/^\d{10}$/.test(telefono)) {
-      setError("El número de teléfono debe tener 10 dígitos");
-      return false;
-    }
-    if (!/\S+@\S+\.\S+/.test(correo)) {
-      setError("El correo electrónico no es válido");
-      return false;
-    }
-    setError(""); 
-    return true;
-  };
+  const [username, setUsername] = useState('');
+  const [password,setPassword]=useState('');
 
-  const enviar = () => {
-    if (validar()) {
-      alert("Datos enviados correctamente ");
+  const handleSubmit = async (e) =>{
+    e.preventDefault();
+    const credenciales = { username, password};
+    try{
+      const respuesta =await api.post('/auth/login', credenciales);
+      if( respuesta.data.token){
+        console.log(respuesta.data.token);//Guardamos el token en el contexto
+        //redirigir al usuario aqui
+        alert('Autenticacion autorizada');
+        chVista('Usuarios');
+      }else{
+        alert('credenciales invalidas');
+      }
+    }catch(error){
+      alert('error',error);
+      console.error('error:',error);
     }
-  };
-
+  }
   return (
     <div className="Iniciosesion">
       <h3>Inicio de sesion</h3>
-      <div className="imagen">
+         <div className="imagen">
         <ul>
             <li><img src={Iniciose}alt="usuarios"/></li>
         </ul>
       </div>
-      
       <p>Escribe tu nombre:</p>
-      <input value={nombre} onChange={(e) => setNombre(e.target.value)} />
-
-      <p>Escribe tu número de teléfono:</p>
-      <input value={telefono} onChange={(e) => setTelefono(e.target.value)} />
-
-      <p>Escribe tu correo:</p>
-      <input value={correo} onChange={(e) => setCorreo(e.target.value)} />
-
-      {error && <p className="error">{error}</p>} 
-      <p></p>
-      <button className="boton" onClick={enviar}>Iniciar</button>
-      <button className="botin">Cancelar</button>
+      <form ondSubmit={handleSubmit}>
+       <input  onChange={(e) => setUsername(e.target.value)} />
+       <p>Escribe tu contraseña:</p>
+       <input onChange={(e) => setPassword(e.target.value)} />
+       <p></p>
+       <button className="boton" >Iniciar</button>
+       <button className="botin">Cancelar</button>
+      </form>
     </div>
   );
 }

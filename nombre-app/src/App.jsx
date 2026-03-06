@@ -11,7 +11,7 @@ function App() {
     <div>
       <AuthProvider>
         <Encabezado cambiarvista={setVista} /> 
-        <Tarjeta vista={vista}/>
+        <Tarjeta vista={vista} chVista={setVista}/>
       </AuthProvider>
       <Expresiones name="freddy"/>
       <Tarjet/>

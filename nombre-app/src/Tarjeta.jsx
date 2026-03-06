@@ -5,13 +5,13 @@ import Acercade from './Acercade';
 import Productos from './Productos';
 import Contacto from './Contacto';
 import Usuarios from './Usuarios';
-import Iniciosesion from './iniciosesion';  
+import Iniciosesion from './Iniciosesion';  
 import Cards from './Cards';
 import Sucursales from './Sucursales';
 import "./Tarjeta.css";
 import PropTypes from 'prop-types';
 
-function ContenedorTargetas({ vista }) {
+function ContenedorTargetas(props) {
   const vistas = {
     Inicio: <Inicio />,
     Usuarios: <Usuarios/>,
@@ -19,13 +19,13 @@ function ContenedorTargetas({ vista }) {
     Cards: <Cards/>,
     Productos: <Productos />,
     Contacto: <Contacto />,
-    Iniciosesion:<Iniciosesion/>,
+    Iniciosesion:<Iniciosesion chvista={props.chVista}/>,
     Sucursales: <Sucursales />
   };
 
   return (
     <div className="tarjetadiv">
-      {vistas[vista] || <Inicio />}
+      {vistas[props.vista] || <Inicio />}
     </div>
   );
 }
