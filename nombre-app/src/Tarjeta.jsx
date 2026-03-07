@@ -11,24 +11,25 @@ import Sucursales from './Sucursales';
 import "./Tarjeta.css";
 import PropTypes from 'prop-types';
 
-function ContenedorTargetas(props) {
+function ContenedorTargetas({ vista, chVista }) {
   const vistas = {
     Inicio: <Inicio />,
-    Usuarios: <Usuarios/>,
+    Usuarios: <Usuarios />,
     AcercaDe: <Acercade />,
-    Cards: <Cards/>,
+    Cards: <Cards />,
     Productos: <Productos />,
     Contacto: <Contacto />,
-    Iniciosesion:<Iniciosesion chvista={props.chVista}/>,
+    Iniciosesion: <Iniciosesion chVista={chVista}/>,
     Sucursales: <Sucursales />
   };
 
   return (
     <div className="tarjetadiv">
-      {vistas[props.vista] || <Inicio />}
+      {vistas[vista] || <Inicio />}
     </div>
   );
 }
+
 
 function Inicio() {
   return (

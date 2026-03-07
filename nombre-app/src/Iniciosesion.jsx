@@ -1,30 +1,30 @@
 import { useState } from "react";
 import "./Iniciosesion.css";
 import Iniciose from "./assets/usuarios.png";
+import axios from "axios";
 
-const Iniciosesion = ({chVista})=>{
-
+const Iniciosesion = ({ chVista }) => {
   const [username, setUsername] = useState('');
-  const [password,setPassword]=useState('');
+  const [password, setPassword] = useState('');
 
-  const handleSubmit = async (e) =>{
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const credenciales = { username, password};
-    try{
-      const respuesta =await api.post('/auth/login', credenciales);
-      if( respuesta.data.token){
-        console.log(respuesta.data.token);//Guardamos el token en el contexto
-        //redirigir al usuario aqui
+    const credenciales = { username, password };
+    try {
+      const respuesta = await axios.post('/auth/login', credenciales);
+      if (respuesta.data.token) {
+        localStorage.setItem("token", respuesta.data.token);
         alert('Autenticacion autorizada');
         chVista('Usuarios');
-      }else{
-        alert('credenciales invalidas');
+      } else {
+        alert('Credenciales inválidas');
       }
-    }catch(error){
-      alert('error',error);
-      console.error('error:',error);
+    } catch (error) {
+      alert('Error en autenticación');
+      console.error('error:', error);
     }
-  }
+  };
+
   return (
     <div className="Iniciosesion">
       <h3>Inicio de sesion</h3>
@@ -34,14 +34,23 @@ const Iniciosesion = ({chVista})=>{
         </ul>
       </div>
       <p>Escribe tu nombre:</p>
-      <form ondSubmit={handleSubmit}>
-       <input  onChange={(e) => setUsername(e.target.value)} />
-       <p>Escribe tu contraseña:</p>
-       <input onChange={(e) => setPassword(e.target.value)} />
-       <p></p>
-       <button className="boton" >Iniciar</button>
-       <button className="botin">Cancelar</button>
-      </form>
+      <form onSubmit={handleSubmit}>
+  <input 
+    type="text" 
+    placeholder="Usuario"
+    onChange={(e) => setUsername(e.target.value)} 
+  />
+  <p>Escribe tu contraseña:</p>
+  <input 
+    type="password" 
+    placeholder="Contraseña"
+    onChange={(e) => setPassword(e.target.value)} 
+  />
+  <p></p>
+  <button type="submit" className="boton">Iniciar</button>
+  <button type="button" className="botin">Cancelar</button>
+</form>
+
     </div>
   );
 }

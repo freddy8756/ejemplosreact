@@ -29,24 +29,21 @@ function Logotipo() {
 }
 
 function Menu({ cambiarvista }) {
-  const {isLoggedin}=useAuth
+  const { isLoggedIn, logout } = useAuth();
   return (
     <div className="menudiv">
       <ul>
-        
-        
         <li onClick={() => cambiarvista("AcercaDe")}>Acerca de</li>
-        
         <li onClick={() => cambiarvista("Productos")}>Productos</li>
         <li onClick={() => cambiarvista("Contacto")}>Contacto</li>
         <li onClick={() => cambiarvista("Iniciosesion")}>Inicio de sesion</li>
         <li onClick={() => cambiarvista("Sucursales")}>Sucursales</li>
-        {isLoggedin ? (
-        <>
-          <li onClick={() => cambiarvista("Usuarios")}>Usuarios</li>
-          <li onClick={() => cambiarvista("Cards")}>Carts</li>
-          <li>cerrar sesion</li>
-        </>
+        {isLoggedIn ? (
+          <>
+            <li onClick={() => cambiarvista("Usuarios")}>Usuarios</li>
+            <li onClick={() => cambiarvista("Cards")}>Cards</li>
+            <li onClick={logout}>Cerrar sesión</li>
+          </>
         ) : (
           <li onClick={() => cambiarvista("Inicio")}>Inicio</li>
         )}
@@ -54,6 +51,7 @@ function Menu({ cambiarvista }) {
     </div>
   );
 }
+
 
 function Redes() {
   return (
