@@ -30,6 +30,10 @@ function Logotipo() {
 
 function Menu({ cambiarvista }) {
   const { isLoggedIn, logout } = useAuth();
+  const handleLogout = () => {
+    logout(); //esto limpia el token y actualiza el estado
+    cambiarvista("Inicio"); // opcional: redirige a inicio después de cerrar sesión
+  };
   return (
     <div className="menudiv">
       <ul>
@@ -42,7 +46,7 @@ function Menu({ cambiarvista }) {
           <>
             <li onClick={() => cambiarvista("Usuarios")}>Usuarios</li>
             <li onClick={() => cambiarvista("Cards")}>Cards</li>
-            <li onClick={logout}>Cerrar sesión</li>
+            <li onClick={handleLogout}>Cerrar sesión</li>
           </>
         ) : (
           <li onClick={() => cambiarvista("Inicio")}>Inicio</li>

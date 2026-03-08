@@ -11,7 +11,7 @@ import Sucursales from './Sucursales';
 import "./Tarjeta.css";
 import PropTypes from 'prop-types';
 
-function ContenedorTargetas({ vista, chVista }) {
+function ContenedorTargetas( props ) {
   const vistas = {
     Inicio: <Inicio />,
     Usuarios: <Usuarios />,
@@ -19,13 +19,13 @@ function ContenedorTargetas({ vista, chVista }) {
     Cards: <Cards />,
     Productos: <Productos />,
     Contacto: <Contacto />,
-    Iniciosesion: <Iniciosesion chVista={chVista}/>,
+    Iniciosesion: <Iniciosesion chVista={props.chVista}/>,
     Sucursales: <Sucursales />
   };
 
   return (
     <div className="tarjetadiv">
-      {vistas[vista] || <Inicio />}
+      {vistas[props.vista] || <Inicio />}
     </div>
   );
 }

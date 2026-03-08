@@ -3,7 +3,7 @@ import Encabezado from "./Encabezado";
 import Expresiones from "./Exprecciones";
 import Tarjeta from "./Tarjeta";
 import Tarjet from "./Tarjet";
-import { AuthProvider } from "./Authcontex";
+import { AuthProvider } from "./Authcontex";  
 function App() {
   const [vista, setVista] = useState("Inicio");
 

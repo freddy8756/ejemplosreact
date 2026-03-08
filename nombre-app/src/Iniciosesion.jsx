@@ -1,9 +1,11 @@
 import { useState } from "react";
 import "./Iniciosesion.css";
 import Iniciose from "./assets/usuarios.png";
-import axios from "axios";
+import api from "./servicios/api";
+import { useAuth } from "./Authcontex";
 
 const Iniciosesion = ({ chVista }) => {
+  const { login } = useAuth();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -11,16 +13,16 @@ const Iniciosesion = ({ chVista }) => {
     e.preventDefault();
     const credenciales = { username, password };
     try {
-      const respuesta = await axios.post('/auth/login', credenciales);
+      const respuesta = await api.post('/auth/login', credenciales);
       if (respuesta.data.token) {
-        localStorage.setItem("token", respuesta.data.token);
+        login(respuesta.data.token);//se guarda el token y se actualiza el estado de autenticación
         alert('Autenticacion autorizada');
         chVista('Usuarios');
       } else {
         alert('Credenciales inválidas');
       }
     } catch (error) {
-      alert('Error en autenticación');
+      alert('Error en autenticación',error);
       console.error('error:', error);
     }
   };
