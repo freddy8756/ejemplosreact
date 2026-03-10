@@ -46,6 +46,7 @@ function Menu({ cambiarvista }) {
           <>
             <li onClick={() => cambiarvista("Usuarios")}>Usuarios</li>
             <li onClick={() => cambiarvista("Cards")}>Cards</li>
+            <li onClick={() => cambiarvista("Categoria")}>Categoria</li>
             <li onClick={handleLogout}>Cerrar sesión</li>
           </>
         ) : (

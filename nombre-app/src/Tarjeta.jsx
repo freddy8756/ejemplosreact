@@ -10,6 +10,7 @@ import Cards from './Cards';
 import Sucursales from './Sucursales';
 import "./Tarjeta.css";
 import PropTypes from 'prop-types';
+import Categoria from './Categoria';
 
 function ContenedorTargetas( props ) {
   const vistas = {
@@ -19,6 +20,7 @@ function ContenedorTargetas( props ) {
     Cards: <Cards />,
     Productos: <Productos />,
     Contacto: <Contacto />,
+    Categoria: <Categoria />,
     Iniciosesion: <Iniciosesion chVista={props.chVista}/>,
     Sucursales: <Sucursales />
   };
@@ -53,7 +55,7 @@ function Tarjeta({ vista }) {
   ] 
   return (
     <div className="inicio">
-      {vista !=="Usuarios" && vista !== "AcercaDe" && vista !== "Cards" && vista !== "Productos" && vista !== "Contacto"&& vista !== "Iniciosesion"  && vista !== "Sucursales" && (
+      {vista !=="Usuarios" && vista !== "AcercaDe" && vista !== "Cards" && vista !== "Productos" && vista !== "Contacto"&& vista !== "Iniciosesion"  && vista !== "Sucursales" &&  vista !== "Categoria" && (
        <>
           {zona.map((item) => (
             <div key={item.id} className="inicio-card">
