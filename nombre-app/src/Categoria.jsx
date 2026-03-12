@@ -10,7 +10,6 @@ const Categorias = () => {
   const obtenerCategorias = async () => {
     try {
       const response = await apis.get("/"); 
-      // ya esta mandando a llamar la base url
       setCategorias(response.data.categories); 
     } catch (error) {
       console.error("Error al obtener categorías:", error);
@@ -28,17 +27,18 @@ const Categorias = () => {
   if (error) return <p>{error}</p>;
 
   return (  
-    <div className="categoria-container">
-      <h2 className="categoria">Categorías de comidas</h2>
-      <ul>
+    <div>
+      <main className="categoria-container">
         {categorias.map((cat) => (
-          <li key={cat.idCategory}>
-            <p><strong>{cat.strCategory}</strong></p>
-            <img className="categoria-card" src={cat.strCategoryThumb} alt={cat.strCategory} width="100" />
-            <p>{cat.strCategoryDescription?.slice(0, 100)}...</p>
-          </li>
+          <article key={cat.idCategory} className="categoria-card">
+            <p className="categoria-titulo"><strong>{cat.strCategory}</strong></p>
+            <img src={cat.strCategoryThumb} alt={cat.strCategory} />
+            <p className="categoria-descripcion">
+              {cat.strCategoryDescription?.slice(0, 100)}...
+            </p>
+          </article>
         ))}
-      </ul>
+      </main>
     </div>
   );
 };
