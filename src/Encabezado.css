@@ -1,0 +1,68 @@
+.encabezadoDiv {
+    background-color: rgb(48, 45, 207);
+    width: 1450px;                 
+    max-width: 1500px;          
+    margin: 0 auto;              
+    margin-bottom: 10px;
+    padding: 10px 20px;
+    display: flex;               
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+}
+
+.logodiv img {
+    width: 150px;
+    height: auto;
+}
+
+.menudiv ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;               
+    gap: 20px;                   
+    background-color: #fff;
+    border-radius: 6px;
+    padding: 10px 15px;
+}
+
+.menudiv ul li {
+    color: #000;
+    cursor: pointer;
+    font-size: 20px;             
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.menudiv ul li:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgb(170, 54, 79);
+    border-radius: 4px;
+    padding: 5px 10px;
+}
+
+.redesdiv ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;               
+    gap: 10px;
+}
+
+.redesdiv ul li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.redesdiv ul li img {
+    width: 100%;
+    height: auto;
+}

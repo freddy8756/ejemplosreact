@@ -1,0 +1,41 @@
+.tsacs {
+    width: 100%;                 
+    max-width: 1400px;           
+    background-color: rgb(139, 139, 139);
+    margin: 50px auto;          
+    min-height: 100px;           
+    margin-bottom: 100px;
+    padding: 20px;
+    display: flex;               
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+}
+
+.deoc {
+    flex: 1;                     
+    text-align: left;
+    padding: 10px;
+}
+
+.deoc h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.ddic {
+    flex: 1;                    
+    text-align: right;
+    padding: 10px;
+}
+
+.ddic h2 {
+    font-size: 1.2rem;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+}
+
+.dera {
+    margin-right: 20px;          
+}

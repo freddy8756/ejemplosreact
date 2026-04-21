@@ -1,0 +1,62 @@
+.Iniciosesion{
+background-color: rgb(44, 76, 218);
+    width: 275px;
+    color: aliceblue;
+    height: 660px;           
+    text-align: center;
+    padding: 15px;
+    border-radius: 8px;       
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+.boton {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 5px;
+    margin-left: 20px;
+    align-items: center;
+}
+.botin{
+    padding: 10px 20px;
+    background-color: #9e0808;
+    color: white;
+    border: none;
+    padding: 5px;
+    border-radius: 4px;
+    margin-left: 90px;
+    cursor: pointer;
+    align-items: center;
+}
+.imagen ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;               
+    gap: 10px;
+}
+
+.imagen ul li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 50px;
+    margin-left: 115px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.imagen ul li img {
+    width: 100%;
+    height: auto;
+}
+.registro {
+    margin-top: 00px;
+    margin-left: 0px;
+
+}
