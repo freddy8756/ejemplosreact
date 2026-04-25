@@ -1,9 +1,10 @@
 import { useState } from "react";
-import Encabezado from "./Encabezado";
-import Expresiones from "./Exprecciones";
-import Tarjeta from "./Tarjeta";
-import Tarjet from "./Tarjet";
-import { AuthProvider } from "./Authcontex";  
+import Encabezado from "./Encabezado.jsx";
+import Expresiones from "./Exprecciones.jsx";
+import Tarjeta from "./Tarjeta.jsx";
+import Tarjet from "./Tarjet.jsx";
+import { AuthProvider } from "./Authcontex.jsx";  // corregido
+
 function App() {
   const [vista, setVista] = useState("Inicio");
 

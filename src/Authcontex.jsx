@@ -1,23 +1,38 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext, useEffect } from "react";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
+  const [user, setUser] = useState(null);   // { id, nombre, rol }
+  const [token, setToken] = useState(null);
 
-  // funciones para facilitar el login/logout
-  const login = (token) => {
-    localStorage.setItem('token', token); // guardamos el token
-    setIsLoggedIn(true);
+  // Al cargar, recuperar datos guardados
+  useEffect(() => {
+    const savedToken = localStorage.getItem("token");
+    const savedUser = localStorage.getItem("user");
+    if (savedToken && savedUser) {
+      setToken(savedToken);
+      setUser(JSON.parse(savedUser));
+    }
+  }, []);
+
+  // funciones para login/logout
+  const login = (usuario, jwtToken) => {
+    localStorage.setItem("token", jwtToken);
+    localStorage.setItem("user", JSON.stringify(usuario));
+    setToken(jwtToken);
+    setUser(usuario);
   };
 
   const logout = () => {
-    localStorage.removeItem('token'); // limpiamos al salir
-    setIsLoggedIn(false);
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    setToken(null);
+    setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+    <AuthContext.Provider value={{ user, token, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import apis from "./servicios/api";
-import Formcateg from "./Agregarcategoria.jsx";
 import "./Categoria.css";
+import Formcateg from "./Agregarcategoria.jsx";
+import { useAuth } from "./Authcontex.jsx"; // tu contexto de autenticación
 
 const Categorias = () => {
   const [categorias, setCategorias] = useState([]);
@@ -10,9 +11,13 @@ const Categorias = () => {
   const [categoriaEditada, setCategoriaEditada] = useState(null);
   const [nombre, setNombre] = useState("");
 
+  const { token, user } = useAuth(); // obtenemos token y rol
+
   const obtenerCategorias = async () => {
     try {
-      const response = await apis.get("/categorias/list");
+      const response = await apis.get("/categorias/list", {
+        headers: { Authorization: `Bearer ${token}` }
+      });
       setCategorias(response.data);
     } catch (error) {
       console.error("Error al obtener categorías:", error);
@@ -25,7 +30,9 @@ const Categorias = () => {
   const eliminarCategoria = async (id) => {
     if (!window.confirm("¿Seguro que deseas eliminar esta categoría?")) return;
     try {
-      await apis.delete(`/categorias/${id}`);
+      await apis.delete(`/categorias/${id}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
       alert("Categoría eliminada correctamente");
       obtenerCategorias();
     } catch (error) {
@@ -42,7 +49,9 @@ const Categorias = () => {
   const actualizarCategoria = async (e) => {
     e.preventDefault();
     try {
-      await apis.put(`/categorias/${categoriaEditada.id}`, { nombre });
+      await apis.put(`/categorias/${categoriaEditada.id}`, { nombre }, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
       alert("Categoría actualizada correctamente");
       setCategoriaEditada(null);
       setNombre("");
@@ -72,23 +81,30 @@ const Categorias = () => {
               <p className="categoria-fecha">
                 Creado: {new Date(cat.createdAt).toLocaleDateString()}
               </p>
-              <button
-                className="btn-eliminar"
-                onClick={() => eliminarCategoria(cat.id)}
-              >
-                Eliminar
-              </button>
-              <button
-                className="btn-editar"
-                onClick={() => editarCategoria(cat)}
-              >
-                Editar
-              </button>
+
+              {/* Solo admin puede editar/eliminar */}
+              {user?.rol === "admin" && (
+                <>
+                  <button
+                    className="btn-eliminar"
+                    onClick={() => eliminarCategoria(cat.id)}
+                  >
+                    Eliminar
+                  </button>
+                  <button
+                    className="btn-editar"
+                    onClick={() => editarCategoria(cat)}
+                  >
+                    Editar
+                  </button>
+                </>
+              )}
             </article>
           ))}
       </main>
 
-      {categoriaEditada && (
+      {/* Formulario de edición */}
+      {categoriaEditada && user?.rol === "admin" && (
         <form className="form-editar" onSubmit={actualizarCategoria}>
           <h3>Editar Categoría</h3>
           <input
@@ -103,12 +119,13 @@ const Categorias = () => {
           </button>
         </form>
       )}
-      <Formcateg onCategoriaAgregada={obtenerCategorias} />
-    </div>
-    
-  );
-  
-};
 
+      {/* Solo admin puede agregar categorías */}
+      {user?.rol === "admin" && (
+        <Formcateg onCategoriaAgregada={obtenerCategorias} />
+      )}
+    </div>
+  );
+};
 
 export default Categorias;

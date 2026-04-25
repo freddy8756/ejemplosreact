@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from "react";
 import api from "./servicios/api.js";
 import "./Agregarcard.css";
+import { useAuth } from "./Authcontex.jsx"; // usamos el contexto
 
 function FormCarrito({ carritoEditado, onGuardado, onCancelar }) {
   const [userId, setUserId] = useState("");
+  const { user, token } = useAuth(); // obtenemos usuario y token
 
   useEffect(() => {
     if (carritoEditado) {
       setUserId(carritoEditado.id_usuario || "");
       console.log("Carrito editado:", carritoEditado);
     } else {
-      setUserId("");
+      // si es cliente, su id viene del contexto
+      setUserId(user?.rol === "cliente" ? user.id : "");
     }
-  }, [carritoEditado]);
+  }, [carritoEditado, user]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,10 +27,14 @@ function FormCarrito({ carritoEditado, onGuardado, onCancelar }) {
 
     try {
       if (carritoEditado) {
-        await api.put(`/carritos/${carritoEditado.id}`, datosCarrito);
+        await api.put(`/carritos/${carritoEditado.id}`, datosCarrito, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
         alert("Carrito actualizado correctamente");
       } else {
-        await api.post("/carritos", datosCarrito);
+        await api.post("/carritos", datosCarrito, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
         alert("Carrito creado correctamente");
       }
 
@@ -43,13 +50,18 @@ function FormCarrito({ carritoEditado, onGuardado, onCancelar }) {
     <div className="Card-fo">
       <h2>{carritoEditado ? "Editar Carrito" : "Agregar Carrito"}</h2>
       <form onSubmit={handleSubmit}>
-        <label>ID de usuario:</label>
-        <input
-          type="number"
-          value={userId}
-          onChange={(e) => setUserId(e.target.value)}
-          required
-        />
+        {/* Solo admin puede elegir el ID de usuario */}
+        {user?.rol === "admin" && (
+          <>
+            <label>ID de usuario:</label>
+            <input
+              type="number"
+              value={userId}
+              onChange={(e) => setUserId(e.target.value)}
+              required
+            />
+          </>
+        )}
         <button type="submit">
           {carritoEditado ? "Actualizar Carrito" : "Crear Carrito"}
         </button>

@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import apis from "./servicios/api";
 import "./CarritoDetalle.css";
+import { useAuth } from "./Authcontex.jsx";
 
 const CarritoDetalle = () => {
+  const { token, user } = useAuth(); // obtenemos token y rol
   const [detalles, setDetalles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -14,35 +16,46 @@ const CarritoDetalle = () => {
   const [precioUnitario, setPrecioUnitario] = useState("");
   const [detalleEditado, setDetalleEditado] = useState(null);
 
-  const obtenerDetalles = async () => {
-    try {
-      const response = await apis.get("/carrito_detalle/list");
-      setDetalles(response.data);
-    } catch (error) {
-      console.error("Error al obtener detalles:", error);
-      setError("No se pudieron cargar los detalles");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const crearDetalle = async (e) => {
-    e.preventDefault();
-    try {
-      await apis.post("/carrito_detalle", {
-        id_carrito: idCarrito,
-        id_producto: idProducto,
-        cantidad,
-        precio_unitario: precioUnitario,
+const obtenerDetalles = async () => {
+  try {
+    let response;
+    if (user?.rol === "admin") {
+      response = await apis.get("/carrito_detalle/list", {
+        headers: { Authorization: `Bearer ${token}` }
       });
-      alert("Detalle agregado correctamente");
-      limpiarFormulario();
-      obtenerDetalles();
-    } catch (error) {
-      console.error("Error al crear detalle:", error);
-      alert("Error al crear detalle");
+    } else {
+      response = await apis.get(`/carrito_detalle/${user.id}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
     }
-  };
+    setDetalles(response.data);
+  } catch (error) {
+    console.error("Error al obtener detalles:", error);
+    setError("No se pudieron cargar los detalles");
+  } finally {
+    setLoading(false);
+  }
+};
+ const crearDetalle = async (e) => {
+  e.preventDefault();
+  try {
+    const payload = { id_producto: idProducto, cantidad };
+    if (user?.rol === "admin") {
+      payload.id_carrito = idCarrito;
+      payload.precio_unitario = precioUnitario;
+    }
+    await apis.post("/carrito_detalle", payload, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    alert("Detalle agregado correctamente");
+    limpiarFormulario();
+    obtenerDetalles();
+  } catch (error) {
+    console.error("Error al crear detalle:", error);
+    alert("Error al crear detalle");
+  }
+};
+
 
   const eliminarDetalle = async (id) => {
     if (!window.confirm("¿Seguro que deseas eliminar este detalle?")) return;
@@ -84,7 +97,7 @@ const CarritoDetalle = () => {
 
   useEffect(() => {
     obtenerDetalles();
-  }, []);
+  });
 
   if (loading) return <p>Cargando...</p>;
   if (error) return <p>{error}</p>;
@@ -94,38 +107,19 @@ const CarritoDetalle = () => {
       <h2>Detalles de Carrito</h2>
 
       {/* Formulario de creación del detalle carrito donde vendran los datos que guardaras del carrito y productos*/}
-      <form className="form-detalle" onSubmit={crearDetalle}>
-        <h3>Agregar Detalle</h3>
-        <input
-          type="number"
-          placeholder="ID Carrito"
-          value={idCarrito}
-          onChange={(e) => setIdCarrito(e.target.value)}
-          required
-        />
-        <input
-          type="number"
-          placeholder="ID Producto"
-          value={idProducto}
-          onChange={(e) => setIdProducto(e.target.value)}
-          required
-        />
-        <input
-          type="number"
-          placeholder="Cantidad"
-          value={cantidad}
-          onChange={(e) => setCantidad(e.target.value)}
-          required
-        />
-        <input
-          type="number"
-          placeholder="Precio Unitario"
-          value={precioUnitario}
-          onChange={(e) => setPrecioUnitario(e.target.value)}
-          required
-        />
-        <button type="submit">Agregar</button>
-      </form>
+     <form className="form-detalle" onSubmit={crearDetalle}>
+  <h3>Agregar Detalle</h3>
+  {user?.rol === "admin" && (
+    <>
+      <input type="number" placeholder="ID Carrito" value={idCarrito} onChange={(e) => setIdCarrito(e.target.value)} required />
+      <input type="number" placeholder="Precio Unitario" value={precioUnitario} onChange={(e) => setPrecioUnitario(e.target.value)} required />
+    </>
+  )}
+  <input type="number" placeholder="ID Producto" value={idProducto} onChange={(e) => setIdProducto(e.target.value)} required />
+  <input type="number" placeholder="Cantidad" value={cantidad} onChange={(e) => setCantidad(e.target.value)} required />
+  <button type="submit">Agregar</button>
+</form>
+
 
       {/* Formulario de edición para que puedas actualizar los detalles */}
       {detalleEditado && (

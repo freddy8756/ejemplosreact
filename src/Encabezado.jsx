@@ -8,7 +8,7 @@ import iconotiktok from './assets/tiktok.jpg';
 import iconotich from './assets/tich.jpg';
 import './Encabezado.css';
 import Clima from "./Clima";
-import { useAuth } from "./Authcontex";
+import { useAuth } from "./Authcontex.jsx";
 
 function Encabezado({ cambiarvista }) {
   return (
@@ -29,25 +29,40 @@ function Logotipo() {
 }
 
 function Menu({ cambiarvista }) {
-  const { isLoggedIn, logout } = useAuth();
+  const { user, logout } = useAuth();
+
   const handleLogout = () => {
-    logout(); //esto limpia el token y actualiza el estado
-    cambiarvista("Inicio"); // opcional: redirige a inicio después de cerrar sesión
+    logout();
+    cambiarvista("Inicio");
   };
+
   return (
     <div className="menudiv">
       <ul>
         <li onClick={() => cambiarvista("AcercaDe")}>Acerca de</li>
         <li onClick={() => cambiarvista("Productos")}>Productos</li>
         <li onClick={() => cambiarvista("Contacto")}>Contacto</li>
-        <li onClick={() => cambiarvista("Iniciosesion")}>Inicio de sesion</li>
+        <li onClick={() => cambiarvista("Iniciosesion")}>Inicio de sesión</li>
         <li onClick={() => cambiarvista("Sucursales")}>Sucursales</li>
-        <li onClick={() => cambiarvista("CarritoDetalle")}>Carritodetalle</li>
-        {isLoggedIn ? (
+
+        {user ? (
           <>
             <li onClick={() => cambiarvista("Usuarios")}>Usuarios</li>
-            <li onClick={() => cambiarvista("Cards")}>Cards</li>
-            <li onClick={() => cambiarvista("Categoria")}>Categoria</li>
+
+            {/* Solo admin puede ver estas opciones */}
+            {user.rol === "admin" && (
+              <>
+                <li onClick={() => cambiarvista("Cards")}>Cards</li>
+                <li onClick={() => cambiarvista("CarritoDetalle")}>Carrito Detalle</li>
+                <li onClick={() => cambiarvista("Categoria")}>Categoría</li>
+              </>
+            )}
+            {user.rol === "cliente" && (
+              <>
+               <li onClick={() => cambiarvista("Cards")}>Cards</li>
+              </>
+            )}
+
             <li onClick={handleLogout}>Cerrar sesión</li>
           </>
         ) : (

@@ -12,17 +12,20 @@ import Sucursales from './Sucursales';
 import "./Tarjeta.css";
 import PropTypes from 'prop-types';
 import Categoria from './Categoria';
+import { useAuth } from "./Authcontex.jsx"; // tu contexto de autenticación
 
-function ContenedorTargetas( props ) {
+function ContenedorTargetas(props) {
+  const { user } = useAuth();
+
   const vistas = {
     Inicio: <Inicio />,
     Usuarios: <Usuarios />,
     AcercaDe: <Acercade />,
-    Cards: <Cards />,
+    Cards: user?.rol === "admin" ? <Cards /> : <Inicio />,   // solo admin
     Productos: <Productos />,
-    CarritoDetalle: <CarritoDetalle />,
+    CarritoDetalle: user?.rol === "admin" ? <CarritoDetalle /> : <Inicio />, // solo admin
     Contacto: <Contacto />,
-    Categoria: <Categoria />,
+    Categoria: user?.rol === "admin" ? <Categoria /> : <Inicio />, // solo admin
     Iniciosesion: <Iniciosesion chVista={props.chVista}/>,
     Sucursales: <Sucursales />
   };
@@ -45,31 +48,36 @@ function Inicio() {
 }
 
 
-ContenedorTargetas.propTypes = {
+Tarjeta.propTypes = {
   vista: PropTypes.string.isRequired,
+  chVista: PropTypes.func.isRequired
 };
 
-function Tarjeta({ vista }) {
+
+
+function Tarjeta({ vista, chVista }) {
   const zona = [
     {id: 1, name: "Carroseria", descripcion:"Un buen coche", src:coche},
     {id: 2, name: "Fabuloso", descripcion:"Un buen coche", src:cochea},
     {id: 3, name: "Auto clasico", descripcion:"Un buen coche", src:coches}
-  ] 
+  ];
+
   return (
     <div className="inicio">
-      {vista !=="Usuarios" && vista !== "AcercaDe" && vista !== "Cards" && vista !== "Productos" && vista !== "CarritoDetalle" && vista !== "Contacto"&& vista !== "Iniciosesion"  && vista !== "Sucursales" &&  vista !== "Categoria" && (
-       <>
+      {vista !== "Usuarios" && vista !== "AcercaDe" && vista !== "Cards" && vista !== "Productos" && vista !== "CarritoDetalle" && vista !== "Contacto" && vista !== "Iniciosesion" && vista !== "Sucursales" && vista !== "Categoria" && (
+        <>
           {zona.map((item) => (
             <div key={item.id} className="inicio-card">
               <h3>{item.name}</h3>
               <p>{item.descripcion}</p>
               <img src={item.src} alt={item.name} />
+              {/* ejemplo de uso de chVista */}
+              <button onClick={() => chVista("Iniciosesion")}>Ir a login</button>
             </div>
           ))}
         </>
       )}
-      
-      <ContenedorTargetas vista={vista} />
+      <ContenedorTargetas vista={vista} chVista={chVista} />
     </div>
   );
 }
